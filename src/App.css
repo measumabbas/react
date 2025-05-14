@@ -1,0 +1,15 @@
+@import "tailwindcss";
+.navbar{
+  display: flex;
+  align-items: center;
+   justify-content: center;
+   gap: 50px;
+   list-style: none;
+   padding: 20px 0px;
+   border-bottom: 1px solid rgba(0, 0, 0, 0.10);
+}
+
+.navbar li{
+  font-size: 25px;
+  font-family: sans-serif;
+}
