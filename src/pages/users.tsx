@@ -1,24 +1,9 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useGithubUsers } from "../hooks/useGithubUsers";
 
 function Users() {
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(false);
-  useEffect(() => {
-    setLoading(true);
-    fetch("https://api.github.com/users")
-      .then((data) => {
-        return data.json();
-      })
-      .then((parsedData) => {
-        setUsers(parsedData);
-        setLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoading(false);
-      });
-  }, []);
+  const {users, loading, error} = useGithubUsers()
+  
   return (
     <div className="max-w-[1440px] mx-auto px-20">
       {loading ? (
@@ -43,7 +28,7 @@ function Users() {
           <tbody>
             {users.map((user) => {
               return (
-                <tr key={user.key}>
+                <tr key={user.id}>
                   <td className="p-6 border border-black/20">
                     <img
                       src={user.avatar_url}
